@@ -23,28 +23,38 @@
             <button id="myButton">Click Me</button>
         </div>
     </div>
-
+    <div id="messages">Event messages will appear below:</div>
+    <div id="eventMessage"></div>
     <script>
+
+        const messagesDiv = document.getElementById('eventMessage');
+
+        function displayMessage(message) {
+            const newMessage = document.createElement('p');
+            newMessage.textContent = message;
+            messagesDiv.appendChild(newMessage);
+        }
+        
         // Capturing phase
         document.getElementById('outer').addEventListener('click', function(event) {
-            console.log('Outer div clicked (capturing phase)');
+            displayMessage('Outer div clicked (capturing phase)');
         }, true); // true for capturing phase
 
         document.getElementById('inner').addEventListener('click', function(event) {
-            console.log('Inner div clicked (capturing phase)');
+            displayMessage('Inner div clicked (capturing phase)');
         }, true); // true for capturing phase
 
         // Bubbling phase
         document.getElementById('outer').addEventListener('click', function(event) {
-            console.log('Outer div clicked (bubbling phase)');
+            displayMessage('Outer div clicked (bubbling phase)');
         }); // default is bubbling phase
 
         document.getElementById('inner').addEventListener('click', function(event) {
-            console.log('Inner div clicked (bubbling phase)');
+            displayMessage('Inner div clicked (bubbling phase)');
         }); // default is bubbling phase
 
         document.getElementById('myButton').addEventListener('click', function(event) {
-            console.log('Button clicked (bubbling phase)');
+            displayMessage('Button clicked (bubbling phase)');
             // Uncomment the following line to stop propagation
             // event.stopPropagation();
         }); // default is bubbling phase
