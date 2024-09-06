@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Capturing and Bubbling</title>
+    <style>
+        #outer {
+            padding: 50px;
+            background-color: lightblue;
+        }
+        #inner {
+            padding: 30px;
+            background-color: lightcoral;
+        }
+    </style>
+</head>
+<body>
+    <div id="outer">
+        Outer Div (Capturing and Bubbling)
+        <div id="inner">
+            Inner Div (Capturing and Bubbling)
+            <button id="myButton">Click Me</button>
+        </div>
+    </div>
+
+    <script>
+        // Capturing phase
+        document.getElementById('outer').addEventListener('click', function(event) {
+            console.log('Outer div clicked (capturing phase)');
+        }, true); // true for capturing phase
+
+        document.getElementById('inner').addEventListener('click', function(event) {
+            console.log('Inner div clicked (capturing phase)');
+        }, true); // true for capturing phase
+
+        // Bubbling phase
+        document.getElementById('outer').addEventListener('click', function(event) {
+            console.log('Outer div clicked (bubbling phase)');
+        }); // default is bubbling phase
+
+        document.getElementById('inner').addEventListener('click', function(event) {
+            console.log('Inner div clicked (bubbling phase)');
+        }); // default is bubbling phase
+
+        document.getElementById('myButton').addEventListener('click', function(event) {
+            console.log('Button clicked (bubbling phase)');
+            // Uncomment the following line to stop propagation
+            // event.stopPropagation();
+        }); // default is bubbling phase
+    </script>
+</body>
+</html>
